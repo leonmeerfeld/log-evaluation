@@ -25,6 +25,8 @@ namespace log_evaluation
             Application.Exit();
         }
 
+        List<string[]> sorted_log_list = new List<string[]>();
+
         private void logFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
@@ -39,7 +41,7 @@ namespace log_evaluation
                 {
                     text = File.ReadAllText(file, System.Text.Encoding.UTF8);
 
-                    List<string[]> sorted_log_list = s.sort_log(text);
+                    sorted_log_list = s.sort_log_into_list(text);
 
                     toolStripStatusLabel1.Text = file;
                 }

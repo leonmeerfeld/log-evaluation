@@ -18,7 +18,7 @@ namespace log_evaluation
          * [6]: IP
          * [7]: SessionID
          */
-        public List<string[]> sort_log(string text)
+        public List<string[]> sort_log_into_list(string text)
         {
             List<string[]> sorted_log_list = new List<string[]>();
 
