@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace log_evaluation
 {
-    class sort
+    class Sort
     {
         /* Log file:
          * [0]: 0, 11: Date
@@ -47,6 +47,12 @@ namespace log_evaluation
                         log_row[6] = item.Substring((item.IndexOf("von", 54) + 4), word_length);
 
                         log_row[7] = item.Substring((item.IndexOf("sessionid", 54) + 10));
+                    }else
+                    {
+                        log_row[4] = "";
+                        log_row[5] = "";
+                        log_row[6] = "";
+                        log_row[7] = "";
                     }
 
                     sorted_log_list.Add(log_row);

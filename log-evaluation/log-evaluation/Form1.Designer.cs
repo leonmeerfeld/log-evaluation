@@ -48,6 +48,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +63,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(712, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(715, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -101,9 +102,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 306);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 324);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(715, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -118,12 +119,13 @@
             this.textBox1.Location = new System.Drawing.Point(80, 47);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(157, 20);
-            this.textBox1.TabIndex = 4;
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 53);
+            this.label1.Location = new System.Drawing.Point(12, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 6;
@@ -143,14 +145,16 @@
             this.textBox2.Location = new System.Drawing.Point(80, 76);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(157, 20);
-            this.textBox2.TabIndex = 8;
+            this.textBox2.TabIndex = 2;
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(311, 76);
+            this.textBox3.Location = new System.Drawing.Point(311, 47);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(157, 20);
-            this.textBox3.TabIndex = 12;
+            this.textBox3.TabIndex = 3;
+            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
             // 
             // label3
             // 
@@ -164,7 +168,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(243, 53);
+            this.label4.Location = new System.Drawing.Point(243, 50);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 10;
@@ -172,22 +176,24 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(311, 47);
+            this.textBox4.Location = new System.Drawing.Point(311, 76);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(157, 20);
-            this.textBox4.TabIndex = 9;
+            this.textBox4.TabIndex = 4;
+            this.textBox4.Leave += new System.EventHandler(this.textBox4_Leave);
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(542, 77);
+            this.textBox5.Location = new System.Drawing.Point(542, 47);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(157, 20);
-            this.textBox5.TabIndex = 16;
+            this.textBox5.TabIndex = 5;
+            this.textBox5.Leave += new System.EventHandler(this.textBox5_Leave);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(474, 80);
+            this.label5.Location = new System.Drawing.Point(474, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 15;
@@ -196,7 +202,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(474, 54);
+            this.label6.Location = new System.Drawing.Point(474, 50);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 14;
@@ -204,16 +210,26 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(542, 48);
+            this.textBox6.Location = new System.Drawing.Point(542, 76);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(157, 20);
-            this.textBox6.TabIndex = 13;
+            this.textBox6.TabIndex = 6;
+            this.textBox6.Leave += new System.EventHandler(this.textBox6_Leave);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 115);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(687, 173);
+            this.listBox1.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 328);
+            this.ClientSize = new System.Drawing.Size(715, 346);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
@@ -262,6 +278,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

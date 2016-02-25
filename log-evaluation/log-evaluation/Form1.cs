@@ -18,7 +18,8 @@ namespace log_evaluation
             InitializeComponent();
         }
 
-        sort s = new sort();
+        Sort s = new Sort();
+        Filter f = new Filter();
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -49,6 +50,145 @@ namespace log_evaluation
                 {
                     MessageBox.Show("Error beim lesen der Datei! " + IOex.ToString());
                 }
+            }
+        }
+
+
+        //private void textBox1_Leave(object sender, EventArgs e)
+        //{
+        //    listBox1.Items.Clear();
+        //    foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+        //    {
+        //        listBox1.Items.AddRange(item);
+        //    }
+        //}
+
+        //private void textBox2_Leave(object sender, EventArgs e)
+        //{
+        //    listBox1.Items.Clear();
+        //    foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+        //    {
+        //        listBox1.Items.AddRange(item);
+        //    }
+        //}
+
+        //private void textBox3_Leave(object sender, EventArgs e)
+        //{
+        //    listBox1.Items.Clear();
+        //    foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+        //    {
+        //        listBox1.Items.AddRange(item);
+        //    }
+        //}
+
+        //private void textBox4_Leave(object sender, EventArgs e)
+        //{
+        //    listBox1.Items.Clear();
+        //    foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+        //    {
+        //        listBox1.Items.AddRange(item);
+        //    }
+        //}
+
+        //private void textBox5_Leave(object sender, EventArgs e)
+        //{
+        //    listBox1.Items.Clear();
+        //    foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+        //    {
+        //        listBox1.Items.AddRange(item);
+        //    }
+        //}
+
+        string text1 = null;
+        bool text1_changed = false;
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            text1_changed = (text1 == textBox1.Text) ? false : true;
+            text1 = textBox1.Text;
+
+            if (text1_changed)
+            {
+                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            }
+        }
+
+        string text2 = null;
+        bool text2_changed = false;
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            text2_changed = (text2 == textBox2.Text) ? false : true;
+            text2 = textBox2.Text;
+
+            if (text2_changed)
+            {
+                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            }
+        }
+
+        string text3 = null;
+        bool text3_changed = false;
+
+        private void textBox3_Leave(object sender, EventArgs e)
+        {
+            text3_changed = (text3 == textBox3.Text) ? false : true;
+            text3 = textBox3.Text;
+
+            if (text3_changed)
+            {
+                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            }
+        }
+
+        string text4 = null;
+        bool text4_changed = false;
+
+        private void textBox4_Leave(object sender, EventArgs e)
+        {
+            text4_changed = (text4 == textBox4.Text) ? false : true;
+            text4 = textBox4.Text;
+
+            if (text4_changed)
+            {
+                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            }
+        }
+
+        string text5 = null;
+        bool text5_changed = false;
+
+        private void textBox5_Leave(object sender, EventArgs e)
+        {
+            text5_changed = (text5 == textBox5.Text) ? false : true;
+            text5 = textBox5.Text;
+
+            if (text5_changed)
+            {
+                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            }
+        }
+
+        string text6 = null;
+        bool text6_changed = false;
+
+        private void textBox6_Leave(object sender, EventArgs e)
+        {
+            text6_changed = (text6 == textBox6.Text) ? false : true;
+            text6 = textBox6.Text;
+
+            if (text6_changed)
+            {
+                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            }
+        }
+
+        public void refresh_listing(string text1, string text2, string text3, string text4, string text5, string text6)
+        {
+            listBox1.Items.Clear();
+            foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+            {
+                listBox1.Items.AddRange(item);
             }
         }
     }
