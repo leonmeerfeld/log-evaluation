@@ -18,7 +18,14 @@ namespace log_evaluation
             InitializeComponent();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        sort s = new sort();
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void logFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
 
@@ -30,7 +37,11 @@ namespace log_evaluation
                 file = openFileDialog1.FileName;
                 try
                 {
-                    text = File.ReadAllText(file, System.Text.Encoding.Default);
+                    text = File.ReadAllText(file, System.Text.Encoding.UTF8);
+
+                    List<string[]> sorted_log_list = s.sort_log(text);
+
+                    toolStripStatusLabel1.Text = file;
                 }
                 catch (IOException IOex)
                 {
