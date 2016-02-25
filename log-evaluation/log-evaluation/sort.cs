@@ -18,17 +18,27 @@ namespace log_evaluation
          * [6]: IP
          * [7]: SessionID
          */
+
+        //int lt1 = 0;
+        //int lt2 = 0;
+        //int lt3 = 0;
+        //int lt4 = 0;
+        //int lt5 = 0;
+        //int lt6 = 0;
+        //int lt7 = 0;
+        //int lt8 = 0;
+
         public List<string[]> sort_log_into_list(string text)
         {
             List<string[]> sorted_log_list = new List<string[]>();
 
             string[] log_rows = text.Split('\n');
+            string[] log_row = new string[8];
 
             foreach(var item in log_rows)
             {
                 if( ! String.IsNullOrEmpty(item))
                 {
-                    string[] log_row = new string[8];
                     int word_length = 0;
 
                     log_row[0] = item.Substring(0, 11);
@@ -54,6 +64,15 @@ namespace log_evaluation
                         log_row[6] = "";
                         log_row[7] = "";
                     }
+
+                    //lt1 = (log_row[0].Length > lt1) ? log_row[0].Length : lt1;
+                    //lt2 = (log_row[1].Length > lt2) ? log_row[1].Length : lt2;
+                    //lt3 = (log_row[2].Length > lt3) ? log_row[2].Length : lt3;
+                    //lt4 = (log_row[3].Length > lt4) ? log_row[3].Length : lt4;
+                    //lt5 = (log_row[4].Length > lt5) ? log_row[4].Length : lt5;
+                    //lt6 = (log_row[5].Length > lt6) ? log_row[5].Length : lt6;
+                    //lt7 = (log_row[6].Length > lt7) ? log_row[6].Length : lt7;
+                    //lt8 = (log_row[7].Length > lt8) ? log_row[7].Length : lt8;
 
                     sorted_log_list.Add(log_row);
                 }

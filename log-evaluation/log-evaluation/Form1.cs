@@ -99,7 +99,7 @@ namespace log_evaluation
         //    }
         //}
 
-        string text1 = null;
+        string text1 = "";
         bool text1_changed = false;
 
         private void textBox1_Leave(object sender, EventArgs e)
@@ -113,7 +113,7 @@ namespace log_evaluation
             }
         }
 
-        string text2 = null;
+        string text2 = "";
         bool text2_changed = false;
 
         private void textBox2_Leave(object sender, EventArgs e)
@@ -127,7 +127,7 @@ namespace log_evaluation
             }
         }
 
-        string text3 = null;
+        string text3 = "";
         bool text3_changed = false;
 
         private void textBox3_Leave(object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace log_evaluation
             }
         }
 
-        string text4 = null;
+        string text4 = "";
         bool text4_changed = false;
 
         private void textBox4_Leave(object sender, EventArgs e)
@@ -155,7 +155,7 @@ namespace log_evaluation
             }
         }
 
-        string text5 = null;
+        string text5 = "";
         bool text5_changed = false;
 
         private void textBox5_Leave(object sender, EventArgs e)
@@ -169,7 +169,7 @@ namespace log_evaluation
             }
         }
 
-        string text6 = null;
+        string text6 = "";
         bool text6_changed = false;
 
         private void textBox6_Leave(object sender, EventArgs e)
@@ -183,12 +183,15 @@ namespace log_evaluation
             }
         }
 
+        string row_in_listbox;
+
         public void refresh_listing(string text1, string text2, string text3, string text4, string text5, string text6)
         {
             listBox1.Items.Clear();
             foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
             {
-                listBox1.Items.AddRange(item);
+                row_in_listbox = item[0].PadRight(12) + item[1].PadRight(9) + item[4].PadRight(26) + item[5].PadRight(24) + item[6].PadRight(15) + item[7].PadRight(33);
+                listBox1.Items.Add(row_in_listbox);
             }
         }
     }
