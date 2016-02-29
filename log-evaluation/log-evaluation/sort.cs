@@ -33,7 +33,7 @@ namespace log_evaluation
             List<string[]> sorted_log_list = new List<string[]>();
 
             string[] log_rows = text.Split('\n');
-            string[] log_row = new string[8];
+            List<string> log_row = new List<string>();
 
             foreach(var item in log_rows)
             {
@@ -41,40 +41,43 @@ namespace log_evaluation
                 {
                     int word_length = 0;
 
-                    log_row[0] = item.Substring(0, 11);
-                    log_row[1] = item.Substring(12, 8);
-                    log_row[2] = item.Substring(21, 4);
-                    log_row[3] = item.Substring(27, 12);
+                    log_row.Add(item.Substring(0, 11));
+                    log_row.Add(item.Substring(12, 8));
+                    log_row.Add(item.Substring(21, 4));
+                    log_row.Add(item.Substring(27, 12));
 
                     if(log_row[2] != "WARN")
                     {
-                        log_row[4] = item.Substring(54, (item.IndexOf("als", 54) - 55));
+                        log_row.Add(item.Substring(54, (item.IndexOf("als", 54) - 55)));
 
                         word_length = ((item.IndexOf(" von ", 54) - 1) - (item.IndexOf(" als ", 54) + 4));
-                        log_row[5] = item.Substring((item.IndexOf("als", 54) + 4), word_length);
+                        log_row.Add(item.Substring((item.IndexOf("als", 54) + 4), word_length));
 
                         word_length = ((item.IndexOf(" mit ", 54) - 1) - (item.IndexOf(" von ", 54) + 4));
-                        log_row[6] = item.Substring((item.IndexOf("von", 54) + 4), word_length);
+                        log_row.Add(item.Substring((item.IndexOf("von", 54) + 4), word_length));
 
-                        log_row[7] = item.Substring((item.IndexOf("sessionid", 54) + 10));
+                        log_row.Add(item.Substring((item.IndexOf("sessionid", 54) + 10)));
                     }else
                     {
-                        log_row[4] = "";
-                        log_row[5] = "";
-                        log_row[6] = "";
-                        log_row[7] = "";
+                        log_row.Add(item.Substring(54, (item.IndexOf("von", 54) - 55)));
+
+                        log_row.Add("");
+
+                        word_length = ((item.IndexOf("fehlgeschlagen", 54) - 1) - (item.IndexOf(" von ", 54) + 4));
+                        log_row.Add(item.Substring((item.IndexOf("von", 54) + 4), word_length));
+
+                        log_row.Add("");
+                    }
+                    string[] log_array = new string[8];
+
+                    int i = 0;
+                    foreach(var row_item in log_row)
+                    {
+                        log_array[i++] = row_item;
                     }
 
-                    //lt1 = (log_row[0].Length > lt1) ? log_row[0].Length : lt1;
-                    //lt2 = (log_row[1].Length > lt2) ? log_row[1].Length : lt2;
-                    //lt3 = (log_row[2].Length > lt3) ? log_row[2].Length : lt3;
-                    //lt4 = (log_row[3].Length > lt4) ? log_row[3].Length : lt4;
-                    //lt5 = (log_row[4].Length > lt5) ? log_row[4].Length : lt5;
-                    //lt6 = (log_row[5].Length > lt6) ? log_row[5].Length : lt6;
-                    //lt7 = (log_row[6].Length > lt7) ? log_row[6].Length : lt7;
-                    //lt8 = (log_row[7].Length > lt8) ? log_row[7].Length : lt8;
-
-                    sorted_log_list.Add(log_row);
+                    sorted_log_list.Add(log_array);
+                    log_row.Clear();
                 }
             }
 

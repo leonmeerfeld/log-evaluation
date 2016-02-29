@@ -14,13 +14,23 @@ namespace log_evaluation
 
             foreach(var item in unfiltered_list)
             {
-                //f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text)
-                if (item[0].Contains(date) && item[1].Contains(time) && item[4].Contains(name) && item[5].Contains(alias) && item[6].Contains(ipadress) && item[7].Contains(sessionid))
+                bool date_bool = (String.IsNullOrEmpty(date)) ? false : true;
+                if(date_bool)
+                {
+
+                }
+
+                if ((date.Length > 0) ? (item[0].Contains(date)) : true &&
+                    (time.Length > 0) ? (item[1].Contains(time)) : true &&
+                    (name.Length > 0) ? (item[4].Contains(name)) : true && 
+                    (alias.Length > 0) ? (item[5].Contains(alias)) : true &&
+                    (ipadress.Length > 0) ? (item[6].Contains(ipadress)) : true && 
+                    (sessionid.Length > 0) ? (item[7].Contains(sessionid)) : true)
                 {
                     filtered_list.Add(item);
                 }
             }
-            return filtered_list;
+                return filtered_list;
         }
     }
 }

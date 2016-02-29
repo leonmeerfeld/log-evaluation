@@ -187,12 +187,23 @@ namespace log_evaluation
 
         public void refresh_listing(string text1, string text2, string text3, string text4, string text5, string text6)
         {
-            listBox1.Items.Clear();
-            foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+            if(text1 == "" && text2 == "" && text3 == "" && text4 == "" && text5 == "" && text6 == "")
             {
-                row_in_listbox = item[0].PadRight(12) + item[1].PadRight(9) + item[4].PadRight(26) + item[5].PadRight(24) + item[6].PadRight(15) + item[7].PadRight(33);
-                listBox1.Items.Add(row_in_listbox);
+                
+            }else
+            {
+                listBox1.Items.Clear();
+                foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+                {
+                    row_in_listbox = item[0].PadRight(12) + item[1].PadRight(9) + item[4].PadRight(26) + item[5].PadRight(24) + item[6].PadRight(16) + item[7].PadRight(33);
+                    listBox1.Items.Add(row_in_listbox);
+                }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
         }
     }
 }
