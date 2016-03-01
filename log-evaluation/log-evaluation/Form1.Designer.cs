@@ -62,7 +62,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(984, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1002, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -111,7 +111,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 691);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(984, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1002, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -243,14 +243,14 @@
             this.treeView1.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(12, 115);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(960, 557);
+            this.treeView1.Size = new System.Drawing.Size(978, 557);
             this.treeView1.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 713);
+            this.ClientSize = new System.Drawing.Size(1002, 713);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox5);

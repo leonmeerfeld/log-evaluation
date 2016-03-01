@@ -182,8 +182,21 @@ namespace log_evaluation
                     {
                         if (filtered_list[i, j, 0] != null)
                         {
-                            string node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(26) + filtered_list[i, j, 5].PadRight(24) + filtered_list[i, j, 6].PadRight(16) + filtered_list[i, j, 7].PadRight(33);
+                            string node_row = "";
+                            if (filtered_list[i, j, 2] != "WARN")
+                            {
+                                node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(26) + filtered_list[i, j, 5].PadRight(26) + filtered_list[i, j, 6].PadRight(16) + filtered_list[i, j, 7].PadRight(33);
+                            }else
+                            {
+                                node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(52) + filtered_list[i, j, 6].PadRight(56);
+                            }
+                            
                             treeView1.Nodes[i].Nodes.Add(node_row);
+
+                            if(filtered_list[i, j, 2] == "WARN")
+                            {
+                                treeView1.Nodes[i].Nodes[j].BackColor = Color.FromArgb(150, Color.Red);
+                            }
                         }
                     }
                 }
