@@ -21,30 +21,56 @@ namespace log_evaluation
         Sort s = new Sort();
         Filter f = new Filter();
 
+        string[, ,] sorted_logs;
+        string[] file_directories;
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        List<string[]> sorted_log_list = new List<string[]>();
+        public void updateStatusStrip ()
+        {
+            string status_strip_text = "Log files in selection:";
+
+            foreach(string directory_path in file_directories)
+            {
+                string[] file_names = directory_path.Split('\\');
+                status_strip_text = status_strip_text + " " + file_names[file_names.Count() - 1];
+            }
+            toolStripStatusLabel1.Text = status_strip_text;
+        }
+
+        private void directoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    file_directories = Directory.GetFiles(folderBrowserDialog1.SelectedPath);
+                    sorted_logs = s.sort_log_into_list(file_directories);
+                    updateStatusStrip();
+                }
+                catch (IOException IOex)
+                {
+                    MessageBox.Show("Error beim lesen der Datei! " + IOex.ToString());
+                }
+            }
+        }
 
         private void logFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
 
-            string file;
-            string text;
-
             if (result == DialogResult.OK)
             {
-                file = openFileDialog1.FileName;
                 try
                 {
-                    text = File.ReadAllText(file, System.Text.Encoding.UTF8);
-
-                    sorted_log_list = s.sort_log_into_list(text);
-
-                    toolStripStatusLabel1.Text = file;
+                    file_directories = openFileDialog1.FileNames;
+                    sorted_logs = s.sort_log_into_list(file_directories);
+                    updateStatusStrip();
                 }
                 catch (IOException IOex)
                 {
@@ -63,7 +89,7 @@ namespace log_evaluation
 
             if (text1_changed)
             {
-                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+                refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
             }
         }
 
@@ -77,7 +103,7 @@ namespace log_evaluation
 
             if (text2_changed)
             {
-                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+                refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
             }
         }
 
@@ -91,7 +117,7 @@ namespace log_evaluation
 
             if (text3_changed)
             {
-                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+                refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
             }
         }
 
@@ -105,7 +131,7 @@ namespace log_evaluation
 
             if (text4_changed)
             {
-                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+                refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
             }
         }
 
@@ -119,7 +145,7 @@ namespace log_evaluation
 
             if (text5_changed)
             {
-                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+                refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
             }
         }
 
@@ -133,31 +159,41 @@ namespace log_evaluation
 
             if (text6_changed)
             {
-                refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+                refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
             }
         }
 
-        string row_in_listbox;
-
-        public void refresh_listing(string text1, string text2, string text3, string text4, string text5, string text6)
+        public void refreshListing(string text1, string text2, string text3, string text4, string text5, string text6)
         {
+            treeView1.Nodes.Clear();
+
             if(text1 == "" && text2 == "" && text3 == "" && text4 == "" && text5 == "" && text6 == "")
             {
                 
             }else
             {
-                listBox1.Items.Clear();
-                foreach (var item in f.filter_list(sorted_log_list, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+                string[,,] filtered_list = f.filter_list(sorted_logs, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+
+                for (int i = 0; i < filtered_list.GetLength(0); i++ )
                 {
-                    row_in_listbox = item[0].PadRight(12) + item[1].PadRight(9) + item[4].PadRight(26) + item[5].PadRight(24) + item[6].PadRight(16) + item[7].PadRight(33);
-                    listBox1.Items.Add(row_in_listbox);
+                    treeView1.Nodes.Add(file_directories[i]);
+
+                    for (int j = 0; j < filtered_list.GetLength(1); j++)
+                    {
+                        if (filtered_list[i, j, 0] != null)
+                        {
+                            string node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(26) + filtered_list[i, j, 5].PadRight(24) + filtered_list[i, j, 6].PadRight(16) + filtered_list[i, j, 7].PadRight(33);
+                            treeView1.Nodes[i].Nodes.Add(node_row);
+                        }
+                    }
                 }
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            refresh_listing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            //f.filter_list(sorted_logs, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
         }
     }
 }

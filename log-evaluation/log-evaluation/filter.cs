@@ -8,29 +8,36 @@ namespace log_evaluation
 {
     class Filter
     {
-        public List<string[]> filter_list(List<string[]> unfiltered_list, string date, string time, string name, string alias, string ipadress, string sessionid)
+        public string[,,] filter_list(string[,,] sorted_logs, string date, string time, string name, string alias, string ipadress, string sessionid)
         {
-            List<string[]> filtered_list = new List<string[]>();
+            string[,,] filtered_list = new string[sorted_logs.GetLength(0), sorted_logs.GetLength(1), 8];
 
-            foreach(var item in unfiltered_list)
+            for(int i = 0; i < sorted_logs.GetLength(0); i++)
             {
-                bool date_bool = (String.IsNullOrEmpty(date)) ? false : true;
-                if(date_bool)
+                for (int j = 0; j < sorted_logs.GetLength(1); j++ )
                 {
-
-                }
-
-                if ((date.Length > 0) ? (item[0].Contains(date)) : true &&
-                    (time.Length > 0) ? (item[1].Contains(time)) : true &&
-                    (name.Length > 0) ? (item[4].Contains(name)) : true && 
-                    (alias.Length > 0) ? (item[5].Contains(alias)) : true &&
-                    (ipadress.Length > 0) ? (item[6].Contains(ipadress)) : true && 
-                    (sessionid.Length > 0) ? (item[7].Contains(sessionid)) : true)
-                {
-                    filtered_list.Add(item);
+                    if (
+                        (!String.IsNullOrEmpty(date) ? (!String.IsNullOrWhiteSpace(sorted_logs[i, j, 0]) ? sorted_logs[i, j, 0].Contains(date) : false) : true) &&
+                        (!String.IsNullOrEmpty(time) ? (!String.IsNullOrWhiteSpace(sorted_logs[i, j, 1]) ? sorted_logs[i, j, 1].Contains(time) : false) : true) &&
+                        (!String.IsNullOrEmpty(name) ? (!String.IsNullOrWhiteSpace(sorted_logs[i, j, 4]) ? sorted_logs[i, j, 4].Contains(name) : false) : true) &&
+                        (!String.IsNullOrEmpty(alias) ? (!String.IsNullOrWhiteSpace(sorted_logs[i, j, 5]) ? sorted_logs[i, j, 5].Contains(alias) : false) : true) &&
+                        (!String.IsNullOrEmpty(ipadress) ? (!String.IsNullOrWhiteSpace(sorted_logs[i, j, 6]) ? sorted_logs[i, j, 6].Contains(ipadress) : false) : true) &&
+                        (!String.IsNullOrEmpty(sessionid) ? (!String.IsNullOrWhiteSpace(sorted_logs[i, j, 7]) ? sorted_logs[i, j, 7].Contains(sessionid) : false) : true)
+                       )
+                    {
+                        filtered_list[i, j, 0] = sorted_logs[i, j, 0];
+                        filtered_list[i, j, 1] = sorted_logs[i, j, 1];
+                        filtered_list[i, j, 2] = sorted_logs[i, j, 2];
+                        filtered_list[i, j, 3] = sorted_logs[i, j, 3];
+                        filtered_list[i, j, 4] = sorted_logs[i, j, 4];
+                        filtered_list[i, j, 5] = sorted_logs[i, j, 5];
+                        filtered_list[i, j, 6] = sorted_logs[i, j, 6];
+                        filtered_list[i, j, 7] = sorted_logs[i, j, 7];
+                    }
                 }
             }
-                return filtered_list;
+
+            return filtered_list;
         }
     }
 }
