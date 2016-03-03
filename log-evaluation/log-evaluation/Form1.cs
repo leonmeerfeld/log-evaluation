@@ -165,37 +165,45 @@ namespace log_evaluation
 
         public void refreshListing(string text1, string text2, string text3, string text4, string text5, string text6)
         {
-            treeView1.Nodes.Clear();
-
-            if(text1 == "" && text2 == "" && text3 == "" && text4 == "" && text5 == "" && text6 == "")
+            if (file_directories != null)
             {
-                
-            }else
-            {
-                string[,,] filtered_list = f.filter_list(sorted_logs, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+                treeView1.Nodes.Clear();
 
-                for (int i = 0; i < filtered_list.GetLength(0); i++ )
+                if (text1 == "" && text2 == "" && text3 == "" && text4 == "" && text5 == "" && text6 == "")
                 {
-                    treeView1.Nodes.Add(file_directories[i]);
 
-                    for (int j = 0; j < filtered_list.GetLength(1); j++)
+                }
+                else
+                {
+                    string[, ,] filtered_list = f.filter_list(sorted_logs, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+
+                    for (int i = 0; i < filtered_list.GetLength(0); i++)
                     {
-                        if (filtered_list[i, j, 0] != null)
-                        {
-                            string node_row = "";
-                            if (filtered_list[i, j, 2] != "WARN")
-                            {
-                                node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(26) + filtered_list[i, j, 5].PadRight(26) + filtered_list[i, j, 6].PadRight(16) + filtered_list[i, j, 7].PadRight(33);
-                            }else
-                            {
-                                node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(52) + filtered_list[i, j, 6].PadRight(56);
-                            }
-                            
-                            treeView1.Nodes[i].Nodes.Add(node_row);
+                        int node_j = 0;
 
-                            if(filtered_list[i, j, 2] == "WARN")
+                        treeView1.Nodes.Add(file_directories[i]);
+
+                        for (int j = 0; j < filtered_list.GetLength(1); j++)
+                        {
+                            if (filtered_list[i, j, 0] != null)
                             {
-                                treeView1.Nodes[i].Nodes[j].BackColor = Color.FromArgb(150, Color.Red);
+                                string node_row = "";
+                                if (filtered_list[i, j, 2] != "WARN")
+                                {
+                                    node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(26) + filtered_list[i, j, 5].PadRight(26) + filtered_list[i, j, 6].PadRight(16) + filtered_list[i, j, 7].PadRight(33);
+                                    treeView1.Nodes[i].Nodes.Add(node_row);
+                                }
+                                else
+                                {
+                                    node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(52) + filtered_list[i, j, 6].PadRight(56);
+                                    treeView1.Nodes[i].Nodes.Add(node_row);
+
+                                    if (checkBox2.Checked == true)
+                                    {
+                                        treeView1.Nodes[i].Nodes[node_j].BackColor = Color.FromArgb(150, Color.Red);
+                                    }
+                                }
+                                node_j++;
                             }
                         }
                     }
@@ -205,7 +213,6 @@ namespace log_evaluation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //f.filter_list(sorted_logs, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
             refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
         }
     }
