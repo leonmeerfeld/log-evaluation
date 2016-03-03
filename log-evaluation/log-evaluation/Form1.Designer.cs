@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +56,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -135,7 +137,7 @@
             this.treeView1.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(12, 133);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(978, 546);
+            this.treeView1.Size = new System.Drawing.Size(978, 544);
             this.treeView1.TabIndex = 17;
             // 
             // groupBox1
@@ -198,6 +200,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(157, 20);
             this.textBox5.TabIndex = 24;
+            this.textBox5.Leave += new System.EventHandler(this.textBox5_Leave);
             // 
             // label5
             // 
@@ -223,6 +226,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(157, 20);
             this.textBox6.TabIndex = 25;
+            this.textBox6.Leave += new System.EventHandler(this.textBox6_Leave);
             // 
             // textBox3
             // 
@@ -230,6 +234,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(157, 20);
             this.textBox3.TabIndex = 22;
+            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
             // 
             // label3
             // 
@@ -255,6 +260,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(157, 20);
             this.textBox4.TabIndex = 23;
+            this.textBox4.Leave += new System.EventHandler(this.textBox4_Leave);
             // 
             // textBox2
             // 
@@ -262,6 +268,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(157, 20);
             this.textBox2.TabIndex = 21;
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // label2
             // 
@@ -287,6 +294,12 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(157, 20);
             this.textBox1.TabIndex = 20;
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Form1
             // 
@@ -342,6 +355,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 
