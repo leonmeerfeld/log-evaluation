@@ -174,6 +174,7 @@
             this.checkBox2.TabIndex = 34;
             this.checkBox2.Text = "Highlight failed logins";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -184,6 +185,7 @@
             this.checkBox1.TabIndex = 33;
             this.checkBox1.Text = "Show only failed logins";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button1
             // 
@@ -193,6 +195,7 @@
             this.button1.TabIndex = 32;
             this.button1.Text = "Refresh";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox5
             // 

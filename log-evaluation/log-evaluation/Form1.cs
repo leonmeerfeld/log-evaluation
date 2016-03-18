@@ -18,6 +18,8 @@ namespace log_evaluation
             InitializeComponent();
         }
 
+        
+
         Sort s = new Sort();
         Filter f = new Filter();
 
@@ -29,6 +31,9 @@ namespace log_evaluation
             Application.Exit();
         }
 
+        /// <summary>
+        /// Method that updates the status strip label.
+        /// </summary>
         public void updateStatusStrip ()
         {
             string status_strip_text = "Log files in selection:";
@@ -163,17 +168,22 @@ namespace log_evaluation
             }
         }
 
+        /// <summary>
+        /// Refreshes the treeView.
+        /// </summary>
+        /// <param name="text1"></param>
+        /// <param name="text2"></param>
+        /// <param name="text3"></param>
+        /// <param name="text4"></param>
+        /// <param name="text5"></param>
+        /// <param name="text6"></param>
         public void refreshListing(string text1, string text2, string text3, string text4, string text5, string text6)
         {
             if (file_directories != null)
             {
                 treeView1.Nodes.Clear();
 
-                if (text1 == "" && text2 == "" && text3 == "" && text4 == "" && text5 == "" && text6 == "")
-                {
-
-                }
-                else
+                if ( ! (text1 == "" && text2 == "" && text3 == "" && text4 == "" && text5 == "" && text6 == ""))
                 {
                     string[, ,] filtered_list = f.filter_list(sorted_logs, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
 
@@ -185,13 +195,16 @@ namespace log_evaluation
 
                         for (int j = 0; j < filtered_list.GetLength(1); j++)
                         {
-                            if (filtered_list[i, j, 0] != null)
+                            //Show successful and failed logins
+                            if (filtered_list[i, j, 0] != null && checkBox1.Checked == false)
                             {
                                 string node_row = "";
                                 if (filtered_list[i, j, 2] != "WARN")
                                 {
                                     node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(26) + filtered_list[i, j, 5].PadRight(26) + filtered_list[i, j, 6].PadRight(16) + filtered_list[i, j, 7].PadRight(33);
                                     treeView1.Nodes[i].Nodes.Add(node_row);
+
+                                    node_j++;
                                 }
                                 else
                                 {
@@ -202,8 +215,26 @@ namespace log_evaluation
                                     {
                                         treeView1.Nodes[i].Nodes[node_j].BackColor = Color.FromArgb(150, Color.Red);
                                     }
+
+                                    node_j++;
                                 }
-                                node_j++;
+                            }
+                            //Show only failed logins
+                            else if(filtered_list[i, j, 0] != null && checkBox1.Checked == true)
+                            {
+                                string node_row = "";
+                                if (filtered_list[i, j, 2] == "WARN")
+                                {
+                                    node_row = filtered_list[i, j, 0].PadRight(12) + filtered_list[i, j, 1].PadRight(9) + filtered_list[i, j, 4].PadRight(52) + filtered_list[i, j, 6].PadRight(56);
+                                    treeView1.Nodes[i].Nodes.Add(node_row);
+
+                                    if (checkBox2.Checked == true)
+                                    {
+                                        treeView1.Nodes[i].Nodes[node_j].BackColor = Color.FromArgb(150, Color.Red);
+                                    }
+
+                                    node_j++;
+                                }
                             }
                         }
                     }
@@ -212,6 +243,16 @@ namespace log_evaluation
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
         }
