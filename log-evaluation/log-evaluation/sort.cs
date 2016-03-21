@@ -7,11 +7,18 @@ using System.IO;
 
 namespace log_evaluation
 {
+    /// <summary>
+    /// Hold method that sort raw data into an array.
+    /// </summary>
     class Sort
     {
+        /// <summary>
+        /// Determine what the highest count of rows in all files is.
+        /// </summary>
+        /// <param name="fileDirectories"></param>
+        /// <returns></returns>
         public int highest_row_count(string[] fileDirectories)
         {
-            //Determine what the highest count of rows in all files is
             int most_rows = 0;
             int file_number = 0;
 
@@ -25,7 +32,11 @@ namespace log_evaluation
 
             return most_rows;
         }
-
+        /// <summary>
+        /// sorts the raw data from files into one multidimensional array.
+        /// </summary>
+        /// <param name="fileDirectories"></param>
+        /// <returns></returns>
         public string[,,] sort_log_into_list(string[] fileDirectories)
         {
             string[,,] sorted_list = new string[fileDirectories.Count(), highest_row_count(fileDirectories), 8];

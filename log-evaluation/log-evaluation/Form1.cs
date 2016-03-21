@@ -46,6 +46,11 @@ namespace log_evaluation
             toolStripStatusLabel1.Text = status_strip_text;
         }
 
+        /// <summary>
+        /// Toolstrip menu item that says 'File'.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void directoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = folderBrowserDialog1.ShowDialog();
@@ -187,11 +192,13 @@ namespace log_evaluation
                 {
                     string[, ,] filtered_list = f.filter_list(sorted_logs, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
 
+                    //int result_counter = 0;
+
                     for (int i = 0; i < filtered_list.GetLength(0); i++)
                     {
-                        int node_j = 0;
-
                         treeView1.Nodes.Add(file_directories[i]);
+
+                        int node_j = 0;
 
                         for (int j = 0; j < filtered_list.GetLength(1); j++)
                         {
@@ -237,21 +244,38 @@ namespace log_evaluation
                                 }
                             }
                         }
+
+                        treeView1.Nodes[i].Text = treeView1.Nodes[i].Text + " (" + Convert.ToString(node_j) + " Entries)";
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Refresh button that refreshes the listing.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
         }
 
+        /// <summary>
+        /// Checkbox that decides whether or not failed logins are shown.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
         }
 
+        /// <summary>
+        /// Checkbox that decides if failed logins are highlighted in red.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);

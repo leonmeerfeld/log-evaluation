@@ -171,7 +171,7 @@
             this.checkBox2.Location = new System.Drawing.Point(719, 55);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(125, 17);
-            this.checkBox2.TabIndex = 34;
+            this.checkBox2.TabIndex = 27;
             this.checkBox2.Text = "Highlight failed logins";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
@@ -182,7 +182,7 @@
             this.checkBox1.Location = new System.Drawing.Point(719, 26);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(133, 17);
-            this.checkBox1.TabIndex = 33;
+            this.checkBox1.TabIndex = 26;
             this.checkBox1.Text = "Show only failed logins";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -192,7 +192,7 @@
             this.button1.Location = new System.Drawing.Point(877, 24);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 49);
-            this.button1.TabIndex = 32;
+            this.button1.TabIndex = 28;
             this.button1.Text = "Refresh";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
