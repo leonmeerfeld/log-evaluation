@@ -94,6 +94,12 @@ namespace log_evaluation
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
+            if(String.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                textBox1.ForeColor = Color.Gray;
+                textBox1.Text = "(dd.mm.yyyy)";
+            }
+
             text1_changed = (text1 == textBox1.Text) ? false : true;
             text1 = textBox1.Text;
 
@@ -188,8 +194,8 @@ namespace log_evaluation
             {
                 treeView1.Nodes.Clear();
 
-                if ( ! (text1 == "" && text2 == "" && text3 == "" && text4 == "" && text5 == "" && text6 == ""))
-                {
+                if (!((text1 == "(dd.mm.yyyy)" || text1 == "") && text2 == "" && text3 == "" && text4 == "" && text5 == "" && text6 == ""))
+                    {
                     string[, ,] filtered_list = f.filter_list(sorted_logs, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
 
                     //int result_counter = 0;
@@ -279,6 +285,15 @@ namespace log_evaluation
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             refreshListing(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            if(textBox1.Text == "(dd.mm.yyyy)")
+            {
+                textBox1.ForeColor = Color.Black;
+                textBox1.Text = "";
+            }
         }
     }
 }
